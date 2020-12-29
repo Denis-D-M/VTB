@@ -4,8 +4,7 @@ package com.vtb.lesson2;
 public class Main {
     public static void main(String[] args) {
         Person person = new Person();
-        Motorcycle motorcycle = new Motorcycle();
-        person.setTransport(motorcycle);
+        person.setTransport(new Motorcycle());
         person.drive();
 
 

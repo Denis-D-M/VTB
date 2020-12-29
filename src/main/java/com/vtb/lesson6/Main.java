@@ -1,18 +1,35 @@
-package com.vtb;
+package com.vtb.lesson6;
 
-public class lesson6 {
-    public static void main(String[] args) {
-        Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < 50; i++) {
-                System.out.println("1" + "-" + i);
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        ClassicCounter counter = new ClassicCounter();
+        new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.inc1();
             }
-        });
-        Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < 50; i++) {
-                System.out.println("2" + " " + i);
+        }).start();
+        new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.inc2();
             }
-        });
-        thread1.start();
-        thread2.start();
+        }).start();
+        new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.dec1();
+            }
+        }).start();
+        new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.dec2();
+            }
+        }).start();
+        new Thread(Main::m1).start();
+        Thread.sleep(1000);
+        System.out.println(counter.value1());
+        System.out.println(counter.value2());
     }
+    static void m1(){
+        System.out.println(1);
+    }
+
 }

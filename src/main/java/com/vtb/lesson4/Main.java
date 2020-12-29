@@ -34,6 +34,7 @@ public class Main {
 
 
     // метод, меняющий местами 2 элемента любого ссылочного массива (По сути, аналог Collections.swap())
+    // Сам додумался, что нет смысла использовать дженерики XD
     public static void switchElem(Object[] arr, int index1, int index2){
         Object temp = arr[index1];
         arr[index1] = arr[index2];
